@@ -1,0 +1,76 @@
+% Εκτύπωση σε χαρτί A4, μία σελίδα ανά φύλλο, με ξεχωριστή σελίδα για τον τίτλο,
+% σε γραμματοσειρά 12pt και format άρθρου.
+\documentclass[a4paper,oneside, 11pt]{article}
+\usepackage[margin=0.7in]{geometry}
+
+% Προσοχή στο [cm-default], χωρίς αυτό μπορεί να μην λειτουργούν τα
+% μαθηματικά σύμβολα σε ορισμένες εγκαταστάσεις του xelatex!
+\usepackage[cm-default]{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+% Ελληνικό Hyphenation, αφαιρέστε το αν δεν έχετε εγκατεστημένο το xgreek.
+\usepackage{xgreek}
+
+% Γραμματοσειρά
+\setmainfont[Mapping=tex-text]{CMU Serif}
+
+% Χρήσιμο πακέτο για εισαγωγή εικόνων jpg/png ή άλλων εγγράφων pdf.
+\usepackage{graphicx}
+
+% Macro που δίνει το μέγιστο επιτρεπτό μέγεθος σε μια εικόνα,
+% χωρίς να παραβιάζει τα όρια του LaTeX.
+\makeatletter
+\def\maxwidth{%
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+% Ενεργοποιήστε την ακόλουθη γραμμή αν δεν θέλετε στοίχιση στις νέες παραγράφους.
+%\parindent=0in
+
+
+\title{\textbf{Πρώτοι αριθμοί} \\ Τίτλος }
+\author{Κάποιος}
+\date{\today} 
+
+% prime number swag
+\makeatletter
+\def\primes#1#2{{%
+  \def\comma{\def\comma{, }}%
+  \count@\@ne\@tempcntb#2\relax\@curtab#1\relax
+  \@primes}}
+\def\@primes{\loop\advance\count@\@ne
+\expandafter\ifx\csname p-\the\count@\endcsname\relax
+\ifnum\@tempcntb<\count@\else
+  \ifnum\count@<\@curtab\else\comma\the\count@\fi\fi\else\repeat
+\@tempcnta\count@\loop\advance\@tempcnta\count@
+\expandafter\let\csname p-\the\@tempcnta\endcsname\@ne
+\ifnum\@tempcnta<\@tempcntb\repeat
+\ifnum\@tempcntb>\count@\expandafter\@primes\fi}
+\makeatother   
+%
+\begin{document}
+
+\maketitle
+
+Μια λίστα με πρώτους αριθμούς που μας έφτιαξε το \LaTeX:
+
+\primes{1}{10}
+
+\primes{1}{100}
+
+\primes{1}{1000}
+
+\primes{900}{1000}
+
+\begin{center}
+Have fun! 
+\end{center}
+
+
+\end{document}

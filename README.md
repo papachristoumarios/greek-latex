@@ -3,7 +3,8 @@ Greek support with *XeLaTeX*
 
 Ελληνικά με το *XeLaTeX* 
 
-## Installation
+
+## Installation (on Debian-based systems)
 
 1. Install `make` via 
 
